@@ -18,3 +18,8 @@ trulens for doctorai
 
 for i in edirect-um/*; python3 test-trulens.py $i | tee -a log0.txt
 
+
+
+for PMID in $(esearch -db pubmed -query "uveal melanoma AND 1980:2000[Date - Publication]" | efetch -format uid); do echo $PMID && \n    efetch -db pubmed -id $PMID -format abstract > "$PMID.txt"\ndone\n
+
+
