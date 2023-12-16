@@ -13,3 +13,8 @@ esearch -db pubmed -query "lung AND carcinoma AND 2023/01/01:3000[Date - Publica
 esearch -db pubmed -query "ovarian AND carcinoma AND 2020/01/01:3000[Date - Publication]" | efetch -format abstract > out-oc.txt\n
 ```
 
+# doctorai-trulens
+trulens for doctorai
+
+for i in edirect-um/*; python3 test-trulens.py $i | tee -a log0.txt
+
