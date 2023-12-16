@@ -130,11 +130,9 @@ with tru_rag as recording:
     rag.query("Can metformin help me live longer?")
 
 a = tru.get_leaderboard(app_ids=[filename])
-print("----------")
 print(a)
-print("----------")
 
-tru.run_dashboard()
+# tru.run_dashboard()
 
 chroma_client.delete_collection("Papers")
 
