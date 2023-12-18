@@ -12,12 +12,17 @@ def read_file(filename):
     except FileNotFoundError:
         return "File not found."
 
-if len(sys.argv) != 2:
-    print("Usage: script.py <filename>")
+if len(sys.argv) != 3:
+    print("Usage: script.py summary.txt original.txt")
 else:
-    filename = sys.argv[1]
-[O    paper_info = read_file(filename)
+    summary_filename = sys.argv[1]
+    filename = sys.argv[2]
+    summary_info = read_file(summary_filename)
+    paper_info = read_file(filename)
+    print(summary_info)
+    print("----------------------------------------")
     print(paper_info)    
+    print("----------------------------------------")
 
 oai_client.embeddings.create(
         model="text-embedding-ada-002",
@@ -125,12 +130,12 @@ tru_rag = TruCustomApp(rag,
     feedbacks = [f_groundedness, f_qa_relevance, f_context_relevance])
 
 with tru_rag as recording:
-    rag.query("Can metformin help me live longer?")
+    rag.query("The following discusses a protein or antigen that can be used in cancer immunotherapy: " + summary_info)
 
 a = tru.get_leaderboard(app_ids=[filename])
 print(a)
 
-# tru.run_dashboard()
+#tru.run_dashboard()
 
 chroma_client.delete_collection("Papers")
 
